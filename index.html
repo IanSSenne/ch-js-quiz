@@ -8,6 +8,25 @@
 		<link rel="stylesheet" href="./assets/main.css" />
 	</head>
 	<body>
+		<header>
+			<button>High Scores</button>
+			<p>Timer: <span id="timer">60</span></p>
+		</header>
+		<main>
+			<div id="start-screen">
+				<h1>JS</h1>
+				<button id="start-btn">Start</button>
+			</div>
+			<div id="quiz-screen" style="display: none">
+				<div id="prompt">
+					<h1 id="question">Question</h1>
+					<hr />
+					<ul id="answers"></ul>
+				</div>
+				<div id="feedback"></div>
+			</div>
+			<div id="score-screen" style="display: none"></div>
+		</main>
 		<script src="./assets/main.js"></script>
 	</body>
 </html>
