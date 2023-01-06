@@ -165,7 +165,7 @@ document.querySelector("#score-form").addEventListener("submit", (e) => {
 
 	hasSubmitScore = true;
 	const name = document.querySelector("#initials").value;
-	document.querySelect("#initials").value = "";
+	document.querySelector("#initials").value = "";
 	const scores = JSON.parse(localStorage.getItem("scores")) || [];
 	scores.push({ name, score: timeRemaining });
 	scores.sort((a, b) => b.score - a.score);
