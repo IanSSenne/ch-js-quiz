@@ -9,7 +9,6 @@
 	</head>
 	<body>
 		<header>
-			<button>High Scores</button>
 			<p>Timer: <span id="timer">60</span></p>
 		</header>
 		<main>
@@ -23,9 +22,24 @@
 					<hr />
 					<ul id="answers"></ul>
 				</div>
-				<div id="feedback"></div>
+				<div id="feedback" hidden></div>
 			</div>
-			<div id="score-screen" style="display: none"></div>
+			<div id="score-screen" style="display: none">
+				<h1>Scores</h1>
+				<hr />
+				<ol id="high-scores"></ol>
+				<hr />
+				<h2>Submit your score</h2>
+				<form id="score-form">
+					<input
+						type="text"
+						id="initials"
+						placeholder="Initials"
+						minlength="1"
+					/>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
 		</main>
 		<script src="./assets/main.js"></script>
 	</body>

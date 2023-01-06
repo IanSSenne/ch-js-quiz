@@ -6,6 +6,7 @@ const answers = document.querySelector("#answers");
 const question = document.querySelector("#question");
 const promptEl = document.querySelector("#prompt");
 const feedbackEl = document.querySelector("#feedback");
+const highScoresEl = document.querySelector("#high-scores");
 
 const questions = [
 	{
@@ -30,7 +31,7 @@ let isRunning = false;
 let intervalId = null;
 let timeRemaining = 0;
 let questionsIndex = 0;
-
+let hasSubmitScore = false;
 function renderQuestion() {
 	answers.innerHTML = "";
 	const questionData = questions[questionsIndex];
@@ -83,6 +84,7 @@ function setScreen(name) {
 function endGame() {
 	clearInterval(intervalId);
 	setScreen("score");
+	renderHighScores();
 }
 
 function tickApp() {
@@ -98,7 +100,34 @@ startScreen.querySelector("button").addEventListener("click", () => {
 	isRunning = true;
 
 	questionsIndex = 0;
-
+	hasSubmitScore = false;
 	renderQuestion();
 	intervalId = setInterval(tickApp, 1000);
+});
+
+function renderHighScores() {
+	const scores = JSON.parse(localStorage.getItem("scores")) || [];
+	highScoresEl.innerHTML = "";
+	scores.forEach((score) => {
+		const li = document.createElement("li");
+		let nameSpan = document.createElement("span");
+		nameSpan.textContent = score.name;
+		let scoreSpan = document.createElement("span");
+		scoreSpan.textContent = score.score;
+		li.appendChild(nameSpan);
+		li.appendChild(scoreSpan);
+		highScoresEl.appendChild(li);
+	});
+}
+
+document.querySelector("#score-form").addEventListener("submit", (e) => {
+	e.preventDefault();
+	if (hasSubmitScore) return;
+	hasSubmitScore = true;
+	const name = document.querySelector("#initials").value;
+	const scores = JSON.parse(localStorage.getItem("scores")) || [];
+	scores.push({ name, score: timeRemaining });
+	scores.sort((a, b) => b.score - a.score);
+	localStorage.setItem("scores", JSON.stringify(scores));
+	renderHighScores();
 });
