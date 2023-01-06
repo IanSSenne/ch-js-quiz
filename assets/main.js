@@ -15,7 +15,7 @@ const questions = [
 		correctAnswer: 1,
 	},
 	{
-		question: 'what is the result of [..."👨‍👨‍👧‍👧"]',
+		question: 'what is the result of [..."👨‍👨‍👧‍👧"]?',
 		answers: [
 			`["👨","\\u200d","👨","\\u200d","👧","\\u200d","👧"]`,
 			`["👨","👨","👧","👧"]`,
@@ -23,6 +23,39 @@ const questions = [
 			`["👨‍👨‍👧‍👧"]`,
 		],
 		correctAnswer: 0,
+	},
+	{
+		question: "What does the static method raw on String do?",
+		answers: [
+			"Returns a string of raw JavaScript code",
+			"Returns the json representation of the string",
+			"Returns a version of the string with no escape sequences applied",
+			"Returns a version of the string with escape sequences applied",
+		],
+		correctAnswer: 2,
+	},
+	{
+		question: "What is the correct term for the following: (function(){...})()",
+		answers: [
+			"Immediately Invoked Function Expression",
+			"Self-Executing Anonymous Function",
+			"Immediately Invoked Anonymous Function",
+			"Self-Executing Function Expression",
+		],
+		correctAnswer: 0,
+	},
+	{
+		question: "Which of the following is not a value result of typeof?",
+		answers: [
+			"mumber",
+			"string",
+			"boolean",
+			"object",
+			"array",
+			"bigont",
+			"symbol",
+		],
+		correctAnswer: 4,
 	},
 ];
 
