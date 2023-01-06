@@ -11,7 +11,7 @@ const highScoresEl = document.querySelector("#high-scores");
 const questions = [
 	{
 		question: "What is 2 + '2'?",
-		answers: ["4", "22", "2", "5"],
+		answers: ["4", "'22'", "2", "5"],
 		correctAnswer: 1,
 	},
 	{
@@ -108,6 +108,12 @@ startScreen.querySelector("button").addEventListener("click", () => {
 function renderHighScores() {
 	const scores = JSON.parse(localStorage.getItem("scores")) || [];
 	highScoresEl.innerHTML = "";
+	if (scores.length === 0) {
+		let li = document.createElement("li");
+		li.textContent = "No high scores yet!";
+		highScoresEl.appendChild(li);
+	}
+
 	scores.forEach((score) => {
 		const li = document.createElement("li");
 		let nameSpan = document.createElement("span");
@@ -123,8 +129,10 @@ function renderHighScores() {
 document.querySelector("#score-form").addEventListener("submit", (e) => {
 	e.preventDefault();
 	if (hasSubmitScore) return;
+
 	hasSubmitScore = true;
 	const name = document.querySelector("#initials").value;
+	document.querySelect("#initials").value = "";
 	const scores = JSON.parse(localStorage.getItem("scores")) || [];
 	scores.push({ name, score: timeRemaining });
 	scores.sort((a, b) => b.score - a.score);
